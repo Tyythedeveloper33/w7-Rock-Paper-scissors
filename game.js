@@ -24,20 +24,26 @@ let ties = 0;
 /* DO NOT CHANGE THE CODE ABOVE */
 
 /***************************** HELPER FUNCTIONS ******************************/
-function printHelp() {
-  // Your code here 
+function printHelp(cmd) {
+
+    // console.log("\nHelp:\n");
+    console.log("  Type 'r' for Rock");
+    console.log("  Type 'p' for Paper");
+    console.log("  Type 's' for Scissors");
+    console.log("  Type 'q' to quit");
+    console.log("  Type 'h' for a list of valid commands\n");
 }
 
 function getWinner(move1, move2) {
-  // Your code here 
+  // Your code here
 }
 
 function getCPUMove() {
-  // Your code here 
+  // Your code here
 }
 
 function processMove(cmd, cpu) {
-  // Your code here 
+  // Your code here
 }
 
 /******************************* MAIN FUNCTION *******************************/
@@ -46,13 +52,9 @@ function promptInput(rl) {
   rl.question('> ', (cmd) => {
     cmd = cmd.toLowerCase();
 
-    if (cmd === 'h') {
-      console.log("\nHelp:\n");
-      console.log("  Type 'r' for Rock");
-      console.log("  Type 'p' for Paper");
-      console.log("  Type 's' for Scissors");
-      console.log("  Type 'q' to quit");
-      console.log("  Type 'h' for a list of valid commands\n");
+      if (cmd === 'h') {
+        return printHelp()
+
     } else if (cmd === 'q') {
       rl.close();
       return;
