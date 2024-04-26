@@ -55,7 +55,11 @@ function getWinner(move1, move2) {
 }
 
 function getCPUMove() {
-  // Your code here
+  const validMoveKeys = Object.keys(VALID_MOVES);
+  // console.log(validMoveKeys)
+  const randomIndex = Math.floor(Math.random() * validMoveKeys.length);
+  const cpu = validMoveKeys[randomIndex];
+  return cpu;
 }
 
 function processMove(cmd, cpu) {
@@ -76,12 +80,13 @@ function promptInput(rl) {
       return;
     } else if (VALID_MOVES[cmd]) {
 
-      const validMoveKeys = Object.keys(VALID_MOVES);
-      // console.log(validMoveKeys)
-      const randomIndex = Math.floor(Math.random() * validMoveKeys.length);
-      const cpu = validMoveKeys[randomIndex];
+      // const validMoveKeys = Object.keys(VALID_MOVES);
+      // // console.log(validMoveKeys)
+      // const randomIndex = Math.floor(Math.random() * validMoveKeys.length);
+      // const cpu = validMoveKeys[randomIndex];
       // cmd is move1 cpu is move2
-      console.log(`You pick ${cmd}, computer picks ${cpu}.`);
+      let computer = getCPUMove()
+      console.log(`You pick ${cmd}, computer picks ${computer}.`);
 
       getWinner(cmd, cpu)
 
