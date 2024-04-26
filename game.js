@@ -80,15 +80,10 @@ function promptInput(rl) {
       return;
     } else if (VALID_MOVES[cmd]) {
 
-      // const validMoveKeys = Object.keys(VALID_MOVES);
-      // // console.log(validMoveKeys)
-      // const randomIndex = Math.floor(Math.random() * validMoveKeys.length);
-      // const cpu = validMoveKeys[randomIndex];
-      // cmd is move1 cpu is move2
       let computer = getCPUMove()
       console.log(`You pick ${cmd}, computer picks ${computer}.`);
 
-      getWinner(cmd, cpu)
+      getWinner(cmd, computer)
 
 
     } else {
