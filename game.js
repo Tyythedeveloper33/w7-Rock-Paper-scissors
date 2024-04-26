@@ -26,16 +26,32 @@ let ties = 0;
 /***************************** HELPER FUNCTIONS ******************************/
 function printHelp(cmd) {
 
-    // console.log("\nHelp:\n");
-    console.log("  Type 'r' for Rock");
-    console.log("  Type 'p' for Paper");
-    console.log("  Type 's' for Scissors");
-    console.log("  Type 'q' to quit");
-    console.log("  Type 'h' for a list of valid commands\n");
+  // console.log("\nHelp:\n");
+  console.log("  Type 'r' for Rock");
+  console.log("  Type 'p' for Paper");
+  console.log("  Type 's' for Scissors");
+  console.log("  Type 'q' to quit");
+  console.log("  Type 'h' for a list of valid commands\n");
+
 }
 
 function getWinner(move1, move2) {
-  // Your code here
+
+  if (move1 === move2) { // tie
+    console.log("You tie.\n");
+    ties++;
+    return 0
+  }
+  else if (VALID_MOVES[move1].winsAgainst === move2) { // win
+    console.log("You win!\n");
+    wins++;
+    return 1
+  } else { // loss
+    console.log("You lose...\n");
+    losses++;
+    return -1
+  }
+
 }
 
 function getCPUMove() {
@@ -52,37 +68,33 @@ function promptInput(rl) {
   rl.question('> ', (cmd) => {
     cmd = cmd.toLowerCase();
 
-      if (cmd === 'h') {
-        return printHelp()
+    if (cmd === 'h') {
+      return printHelp()
 
     } else if (cmd === 'q') {
       rl.close();
       return;
-    } else if (VALID_MOVES[cmd]){
+    } else if (VALID_MOVES[cmd]) {
+
       const validMoveKeys = Object.keys(VALID_MOVES);
+      // console.log(validMoveKeys)
       const randomIndex = Math.floor(Math.random() * validMoveKeys.length);
       const cpu = validMoveKeys[randomIndex];
-
+      // cmd is move1 cpu is move2
       console.log(`You pick ${cmd}, computer picks ${cpu}.`);
 
-      if (cmd === cpu) { // tie
-        console.log("You tie.\n");
-        ties++;
-      }
-      else if (VALID_MOVES[cmd].winsAgainst === cpu) { // win
-        console.log("You win!\n");
-        wins++;
-      } else { // loss
-        console.log("You lose...\n");
-        losses++;
-      }
+      getWinner(cmd, cpu)
+
+
     } else {
+
       console.log("\nInvalid command.\n");
       console.log("  Type 'r' for Rock");
       console.log("  Type 'p' for Paper");
       console.log("  Type 's' for Scissors");
       console.log("  Type 'q' to quit");
       console.log("  Type 'h' for a list of valid commands\n");
+
     }
 
     promptInput(rl);
